@@ -1,5 +1,3 @@
-## rCore_tutorial_v3 TESTS
+# riscvos-c-tests
 
 详见 [guide](./guide.md) 。
-
-# riscvos-c-tests
