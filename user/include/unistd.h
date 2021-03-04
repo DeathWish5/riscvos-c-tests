@@ -17,4 +17,5 @@ int exec(char*);
 int wait(int, int*);
 uint64 get_time();
 int sleep(unsigned long long);
+int set_priority(int prio);
 #endif // __UNISTD_H__
