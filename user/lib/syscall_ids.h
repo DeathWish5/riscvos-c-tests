@@ -279,3 +279,5 @@
 #define SYS_kexec_file_load 294
 #define SYS_riscv_flush_icache 244 + 15
 #define SYS_spawn 400
+#define SYS_mailread 401
+#define SYS_mailwrite 402

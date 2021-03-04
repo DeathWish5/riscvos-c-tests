@@ -22,4 +22,13 @@ int mmap(void* start, unsigned long long len, int prot);
 int munmap(void* start, unsigned long long len);
 int wait(int*);
 int spawn(char *file);
+int mailread(void* buf, int len);
+int mailwrite(int pid, void* buf, int len);
+
+int fstat(int fd, Stat* st);
+int sys_linkat(int olddirfd, char* oldpath, int newdirfd, char* newpath, unsigned int flags);
+int sys_unlinkat(int dirfd, char* path, unsigned int flags);
+int link(char* old_path, char* new_path);
+int unlink(char* path);
+
 #endif // __UNISTD_H__

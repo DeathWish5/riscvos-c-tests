@@ -74,3 +74,31 @@ int wait(int* code) {
 int spawn(char *file) {
     return syscall(SYS_spawn, file);
 }
+
+int mailread(void* buf, int len) {
+    return syscall(SYS_mailread, buf, len);
+}
+
+int mailwrite(int pid, void* buf, int len) {
+    return syscall(SYS_mailwrite, pid, buf, len);
+}
+
+int fstat(int fd, Stat* st) {
+    return syscall(SYS_fstat, fd, st);
+}
+
+int sys_linkat(int olddirfd, char* oldpath, int newdirfd, char* newpath, unsigned int flags) {
+    return syscall(SYS_linkat, olddirfd, oldpath, newdirfd, newpath, flags);
+}
+
+int sys_unlinkat(int dirfd, char* path, unsigned int flags) {
+    return syscall(SYS_unlinkat, dirfd, path, flags);
+}
+
+int link(char* old_path, char* new_path) {
+    return sys_linkat(AT_FDCWD, old_path, AT_FDCWD, new_path, 0);
+}
+
+int unlink(char* path) {
+    return sys_unlinkat(AT_FDCWD, path, 0);
+}
