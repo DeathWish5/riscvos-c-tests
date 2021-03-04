@@ -8,7 +8,7 @@
 
 int main() {
     assert(set_priority(10) == 10);
-    assert(set_priority(LONG_MAX) == LONG_MAX);
+    assert(set_priority(INT_MAX) == INT_MAX);
     assert(set_priority(0) == -1);
     assert(set_priority(1) == -1);
     assert(set_priority(-10) == -1);

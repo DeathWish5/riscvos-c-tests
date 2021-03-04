@@ -56,5 +56,13 @@ int sleep(unsigned long long time) {
 }
 
 int set_priority(int prio) {
-    return syscall(SYS_setpriority, prio, 0, 0);
+    return syscall(SYS_setpriority, prio);
+}
+
+int mmap(void* start, unsigned long long len, int prot) {
+    return syscall(SYS_mmap, start, len, prot);
+}
+
+int munmap(void* start, unsigned long long len) {
+    return syscall(SYS_munmap, start, len);
 }

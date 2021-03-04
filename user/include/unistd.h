@@ -18,4 +18,6 @@ int wait(int, int*);
 uint64 get_time();
 int sleep(unsigned long long);
 int set_priority(int prio);
+int mmap(void* start, unsigned long long len, int prot);
+int munmap(void* start, unsigned long long len);
 #endif // __UNISTD_H__
