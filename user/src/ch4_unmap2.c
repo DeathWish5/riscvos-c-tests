@@ -10,6 +10,6 @@ int main() {
     assert(len == mmap((void*)start, len, prot));
     assert(munmap((void*)start, len + 1) == -1);
     assert(munmap((void*)(start + 1), len - 1) == -1);
-    puts("Test 04_6 ummap2 OK!");
+    puts("Test 04_6 ummap2 OK!\n");
     return 0;
 }

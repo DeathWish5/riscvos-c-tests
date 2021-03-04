@@ -12,6 +12,6 @@ int main() {
     assert(mmap((void*)(start + len + 1), len, prot) == -1);
     assert(mmap((void*)(start + len), len, 0) == -1);
     assert(mmap((void*)(start + len), len, prot | 8) == -1);
-    puts("Test 04_4 test OK!");
+    puts("Test 04_4 test OK!\n");
     return 0;
 }

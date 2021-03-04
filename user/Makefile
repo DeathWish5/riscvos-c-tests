@@ -24,6 +24,8 @@ binary:
 
 CH2_TESTS := ch2 ch2t
 CH3_TESTS := ch3 ch3t
+CH4_TESTS := ch4
+CH5_TESTS := ch5
 
 ch2: binary
 	@rm -rf $(out_dir)
@@ -38,6 +40,20 @@ ch3: binary
 	@mkdir -p $(out_dir)/elf/
 	@$(foreach t, $(CH3_TESTS), cp $(bin_dir)/$(t)_*.bin $(out_dir)/bin/;)
 	@$(foreach t, $(CH3_TESTS), cp $(src_dir)/$(t)_* $(out_dir)/elf/;)
+
+ch4: binary
+	@rm -rf $(out_dir)
+	@mkdir -p $(out_dir)/bin/
+	@mkdir -p $(out_dir)/elf/
+	@$(foreach t, $(CH4_TESTS), cp $(bin_dir)/$(t)_*.bin $(out_dir)/bin/;)
+	@$(foreach t, $(CH4_TESTS), cp $(src_dir)/$(t)_* $(out_dir)/elf/;)
+
+ch5: binary
+	@rm -rf $(out_dir)
+	@mkdir -p $(out_dir)/bin/
+	@mkdir -p $(out_dir)/elf/
+	@$(foreach t, $(CH5_TESTS), cp $(bin_dir)/$(t)_*.bin $(out_dir)/bin/;)
+	@$(foreach t, $(CH5_TESTS), cp $(src_dir)/$(t)_* $(out_dir)/elf/;)
 
 clean:
 	@rm -rf build target asm

@@ -10,10 +10,10 @@ const int HEIGHT = 5;
 
 int main() {
     for (int i = 0; i < HEIGHT; ++i) {
-        for (int _ =  0; _ < WIDTH; ++_) { puts("B"); }
-        printf(" [%d/%d]", i + 1, HEIGHT);
+        for (int _ =  0; _ < WIDTH; ++_) { puts("B\n"); }
+        printf(" [%d/%d]\n", i + 1, HEIGHT);
         sched_yield();
     }
-    puts("Test write B OK!");
+    puts("Test write B OK!\n");
     return 0;
 }

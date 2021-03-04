@@ -35,7 +35,7 @@ void exit(int code) {
     syscall(SYS_exit, code);
 }
 
-int wait(int pid, int* code) {
+int waitpid(int pid, int* code) {
     return syscall(SYS_wait4, pid, code);
 }
 
@@ -65,4 +65,12 @@ int mmap(void* start, unsigned long long len, int prot) {
 
 int munmap(void* start, unsigned long long len) {
     return syscall(SYS_munmap, start, len);
+}
+
+int wait(int* code) {
+    return waitpid(-1, code);
+}
+
+int spawn(char *file) {
+    return syscall(SYS_spawn, file);
 }

@@ -16,6 +16,6 @@ int main() {
         uint8* addr = (uint8*)i;
         assert(*addr == (uint8)i);
     }
-    puts("Test 04_1 OK!");
+    puts("Test 04_1 OK!\n");
     return 0;
 }

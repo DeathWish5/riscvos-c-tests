@@ -19,6 +19,6 @@ int main() {
         uint8* addr = (uint8*)i;
         assert(*addr == (uint8)i);
     }
-    puts("Test 04_5 ummap OK!");
+    puts("Test 04_5 ummap OK!\n");
     return 0;
 }

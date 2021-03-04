@@ -33,6 +33,6 @@ int count_during(int prio) {
 int main() {
     int prio = 10;
     int count = count_during(prio);
-    printf("priority = %d, exitcode = %d", prio, count);
+    printf("priority = %d, exitcode = %d\n", prio, count);
     return 0;
 }

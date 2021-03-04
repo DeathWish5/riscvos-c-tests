@@ -278,3 +278,4 @@
 #define SYS_rseq 293
 #define SYS_kexec_file_load 294
 #define SYS_riscv_flush_icache 244 + 15
+#define SYS_spawn 400

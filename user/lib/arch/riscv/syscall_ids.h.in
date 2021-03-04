@@ -280,5 +280,5 @@
 #define __NR_rseq 293
 #define __NR_kexec_file_load 294
 #define __NR_riscv_flush_icache 244 + 15
-
+#define __NR_spawn 400
 

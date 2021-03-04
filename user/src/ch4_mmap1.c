@@ -10,6 +10,6 @@ int main() {
     assert(len == mmap((void*)start, len, prot));
     uint8* addr = (uint8*)start;
     *addr = (uint8)start;
-    puts("Should cause error, Test 04_2 fail!");
+    puts("Should cause error, Test 04_2 fail!\n");
     return 0;
 }
