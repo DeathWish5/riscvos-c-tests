@@ -13,6 +13,7 @@ char* DATA_STRING = "string from data section\n";
 
 int main(void) {
     int str_len = strlen(DATA_STRING);
+    assert(write(1234, DATA_STRING, str_len) == -1);
     assert(write(stdout, DATA_STRING, str_len) == str_len);
     assert(write(stdout, DATA_STRING, 5) == 5);
     char* stack_string = "string from stack section\n";

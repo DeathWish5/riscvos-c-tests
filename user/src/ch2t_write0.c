@@ -14,11 +14,10 @@ uint64 r_sp() {
 
 uint64 stack_top() {
     uint64 sp = r_sp();
-    uint64 top = (sp + STACK_SIZE - 1) & (!(STACK_SIZE - 1));
+    uint64 top = (sp + STACK_SIZE - 1) & (~(STACK_SIZE - 1));
     return top;
 }
 
-/// (推荐内核输出非法 write 信息)
 /// 正确输出： 
 /// Test write0 OK!
 
