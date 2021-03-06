@@ -16,6 +16,7 @@ int fork(void);
 int exec(char*);
 int waitpid(int, int*);
 uint64 get_time();
+int sys_get_time(TimeVal* ts, int tz); // syscall ID: 169; tz 表示时区，这里无需考虑，始终为0; 返回值：正确返回 0，错误返回 -1。
 int sleep(unsigned long long);
 int set_priority(int prio);
 int mmap(void* start, unsigned long long len, int prot);

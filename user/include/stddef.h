@@ -60,6 +60,11 @@ typedef __builtin_va_list va_list;
 #define AT_FDCWD -100
 
 typedef struct {
+    uint64 sec;	// 自 Unix 纪元起的秒数
+    uint64 usec;	// 微秒数
+} TimeVal;
+
+typedef struct {
     uint64 dev;		// 文件所在磁盘驱动器号，不考虑 
     uint64 ino;		// inode 文件所在 inode 编号
     uint32 mode;	// 文件类型
