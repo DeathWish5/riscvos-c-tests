@@ -12,10 +12,10 @@ int main() {
     }
     int exit_code = 0;
     for (int _ = 0; _ < MAX_CHILD; ++_) {
-        assert(wait(&exit_code) <= 0);          // "wait stopped early"
+        assert(wait(&exit_code) > 0);          // "wait stopped early"
         assert(exit_code == 0);                 // "error exit code"
     }
-    assert(wait(&exit_code) > 0);               // "wait got too many"
+    assert(wait(&exit_code) < 0);               // "wait got too many"
     puts("TEST spawn0 OK!\n");
     return 0;
 }

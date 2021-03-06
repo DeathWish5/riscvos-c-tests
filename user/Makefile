@@ -23,6 +23,7 @@ binary:
 	@mkdir -p asm
 	@$(CP) build/asm/* asm
 
+
 CH_TESTS := ch$(CHAPTER)
 
 ch_tests: binary
