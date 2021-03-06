@@ -1,11 +1,10 @@
-.DEFAULT_GOAL := ch2
-
 ARCH ?= riscv64
 MODE ?= release
+CHAPTER ?=
 src_dir := build/$(ARCH)
 bin_dir := build/bin
 out_dir := target
-cmake_build_args := -DARCH=$(ARCH)
+cmake_build_args := -DARCH=$(ARCH) -DCHAPTER=$(CHAPTER)
 ifeq ($(MODE), release)
 cmake_build_args += -DCMAKE_BUILD_TYPE=Release
 else ifeq ($(MODE), debug)
@@ -16,44 +15,23 @@ OBJCOPY := $(ARCH)-linux-musl-objcopy
 OBJDUMP := $(ARCH)-linux-musl-objdump
 CP := cp
 
+all: ch_tests
+
 binary:
 	@mkdir -p build
 	@cd build && cmake $(cmake_build_args) .. && make -j
 	@mkdir -p asm
 	@$(CP) build/asm/* asm
 
-CH2_TESTS := ch2 ch2t
-CH3_TESTS := ch3 ch3t
-CH4_TESTS := ch4
-CH5_TESTS := ch5
+CH_TESTS := ch$(CHAPTER)
 
-ch2: binary
+ch_tests: binary
 	@rm -rf $(out_dir)
 	@mkdir -p $(out_dir)/bin/
 	@mkdir -p $(out_dir)/elf/
-	@$(foreach t, $(CH2_TESTS), cp $(bin_dir)/$(t)_*.bin $(out_dir)/bin/;)
-	@$(foreach t, $(CH2_TESTS), cp $(src_dir)/$(t)_* $(out_dir)/elf/;)
 
-ch3: binary
-	@rm -rf $(out_dir)
-	@mkdir -p $(out_dir)/bin/
-	@mkdir -p $(out_dir)/elf/
-	@$(foreach t, $(CH3_TESTS), cp $(bin_dir)/$(t)_*.bin $(out_dir)/bin/;)
-	@$(foreach t, $(CH3_TESTS), cp $(src_dir)/$(t)_* $(out_dir)/elf/;)
-
-ch4: binary
-	@rm -rf $(out_dir)
-	@mkdir -p $(out_dir)/bin/
-	@mkdir -p $(out_dir)/elf/
-	@$(foreach t, $(CH4_TESTS), cp $(bin_dir)/$(t)_*.bin $(out_dir)/bin/;)
-	@$(foreach t, $(CH4_TESTS), cp $(src_dir)/$(t)_* $(out_dir)/elf/;)
-
-ch5: binary
-	@rm -rf $(out_dir)
-	@mkdir -p $(out_dir)/bin/
-	@mkdir -p $(out_dir)/elf/
-	@$(foreach t, $(CH5_TESTS), cp $(bin_dir)/$(t)_*.bin $(out_dir)/bin/;)
-	@$(foreach t, $(CH5_TESTS), cp $(src_dir)/$(t)_* $(out_dir)/elf/;)
+	@$(foreach t, $(CH_TESTS), cp $(bin_dir)/$(t)* $(out_dir)/bin/;)
+	@$(foreach t, $(CH_TESTS), cp $(src_dir)/$(t)* $(out_dir)/elf/;)
 
 clean:
 	@rm -rf build target asm
