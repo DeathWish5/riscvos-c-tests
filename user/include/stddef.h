@@ -13,6 +13,7 @@ typedef int int32;
 typedef unsigned int uint32;
 typedef long long int64;
 typedef unsigned long long uint64;
+typedef unsigned int uint;
 
 #define ULONG_MAX  (0xffffffffffffffffULL)
 #define LONG_MAX   (0x7fffffffffffffffLL)
@@ -65,7 +66,7 @@ typedef struct {
 } TimeVal;
 
 typedef struct {
-    uint64 dev;		// 文件所在磁盘驱动器号，不考虑 
+    uint64 dev;		// 文件所在磁盘驱动器号，不考虑
     uint64 ino;		// inode 文件所在 inode 编号
     uint32 mode;	// 文件类型
     uint32 nlink;	// 硬链接数量，初始为1
