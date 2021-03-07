@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.13)
 
 project(user)
 enable_language(ASM)
@@ -32,9 +32,7 @@ set(CMAKE_OBJDUMP           ${PREFIX}objdump)
 set(CMAKE_RANLIB            ${PREFIX}ranlib)
 set(CMAKE_C_FLAGS           "${CMAKE_C_FLAGS} -fno-builtin -nostdinc -fno-stack-protector -ggdb -Wall")
 set(CMAKE_ASM_FLAGS         ${CMAKE_C_FLAGS})
-set(CMAKE_C_LINK_FLAGS      "${LINK_FLAGS} -nostdlib")  # override default value to get rid of '-Wl,-search_paths_first -Wl,-headerpad_max_install_names'
-set(CMAKE_SHARED_LIBRARY_LINK_C_FLAGS)                  # override default value to get rid of '-rdynamic' on Linux
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_C_LINK_FLAGS} -nostdlib -N -T ${CMAKE_CURRENT_SOURCE_DIR}/${ARCH_DIR}/user.ld")
+set(CMAKE_C_LINK_FLAGS      "${LINK_FLAGS} -nostdlib -T ${CMAKE_CURRENT_SOURCE_DIR}/${ARCH_DIR}/user.ld")
 
 # Library
 aux_source_directory(lib LIBS)
@@ -51,11 +49,11 @@ foreach(PATH ${SRCS})
     get_filename_component(NAME ${PATH} NAME_WE)
     add_executable(${NAME} ${PATH})
     target_link_libraries(${NAME} ulib)
+    target_link_options(${NAME} PRIVATE -Ttext ${ENTRY})
 
-if ("${CHAPTER}" STREQUAL 3)
-    target_link_options(${NAME} PRIVATE -e ${ENTRY})
-    math(EXPR ENTRY "${ENTRY}+0x20000")
-endif ()
+    if ("${CHAPTER}" STREQUAL 3)
+        math(EXPR ENTRY "${ENTRY} + 0x20000" OUTPUT_FORMAT HEXADECIMAL)
+    endif ()
 
     add_custom_command(
             TARGET ${NAME}

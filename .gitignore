@@ -2,4 +2,5 @@
 /user/asm
 /user/build
 /user/target
+/user/lib/syscall_ids.h
 /.idea
