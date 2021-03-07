@@ -19,7 +19,7 @@ all: ch_tests
 
 binary:
 	@mkdir -p build
-	@cd build && cmake $(cmake_build_args) .. && make -j
+	@cd build && cmake $(cmake_build_args) .. && make
 	@mkdir -p asm
 	@$(CP) build/asm/* asm
 
