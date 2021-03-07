@@ -6,7 +6,7 @@
 
 ### 测试文件说明
 
-在 `/user` 目录下 `make chx` 即可得到实验x的测例，位于 `user/target`目录下，`elf` 和 `bin` 表示格式。（具体操作见 `user/Makefile`）
+在 `/user` 目录下 `make all CHAPTER=x` 即可得到实验x的测例，位于 `user/target`目录下，`elf` 和 `bin` 表示格式。（具体操作见 `user/Makefile`）
 
 `chx_*` 格式的文件表明属于实验x，`chxt_*` 格式的文件表明属于实验x，但仅仅是暂时实现，后续可能会去除，具体见下方描述。
 

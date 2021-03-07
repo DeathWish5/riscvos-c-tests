@@ -51,8 +51,16 @@ foreach(PATH ${SRCS})
     target_link_libraries(${NAME} ulib)
     target_link_options(${NAME} PRIVATE -Ttext ${ENTRY})
 
-    if ("${CHAPTER}" STREQUAL 3)
-        math(EXPR ENTRY "${ENTRY} + 0x20000" OUTPUT_FORMAT HEXADECIMAL)
+    if ("${CHAPTER}" MATCHES 3_*)
+        if(${NAME} STREQUAL ch4_mmap0)
+            break ()
+        elseif (${NAME} STREQUAL ch3_0_sleep1 OR ${NAME} STREQUAL ch3_1_yield2)
+            math(EXPR ENTRY "0x80400000" OUTPUT_FORMAT HEXADECIMAL)
+        elseif (${NAME} STREQUAL ch3_2_stride5)
+            math(EXPR ENTRY "0x80500000" OUTPUT_FORMAT HEXADECIMAL)
+        else ()
+            math(EXPR ENTRY "${ENTRY} + 0x20000" OUTPUT_FORMAT HEXADECIMAL)
+        endif ()
     endif ()
 
     add_custom_command(
