@@ -6,7 +6,7 @@ const int MAX_CHILD = 40;
 
 int main() {
     for (int _ = 0; _ < MAX_CHILD; ++_) {
-        int cpid = spawn("ch5_getpid");
+        int cpid = spawn("ch5_getpid\0");
         assert(cpid >= 0);                      // "child pid invalid"
         printf("new child %d\n", cpid);
     }
