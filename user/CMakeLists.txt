@@ -42,26 +42,31 @@ include_directories(include/)
 target_include_directories(ulib PRIVATE ${ARCH_DIR})
 
 # Execuatble
-set(ENTRY "0x80400000")
+set(ENTRY "0x1000")
 aux_source_directory(src SRCS)
 set(EXECUTABLE_OUTPUT_PATH ${ARCH})
 foreach(PATH ${SRCS})
     get_filename_component(NAME ${PATH} NAME_WE)
-    add_executable(${NAME} ${PATH})
-    target_link_libraries(${NAME} ulib)
-    target_link_options(${NAME} PRIVATE -Ttext ${ENTRY})
+
+    if ("${CHAPTER}" STREQUAL 2)
+        math(EXPR ENTRY "0x80400000" OUTPUT_FORMAT HEXADECIMAL)
+    endif ()
 
     if ("${CHAPTER}" MATCHES 3_*)
         if(${NAME} STREQUAL ch4_mmap0)
             break ()
-        elseif (${NAME} STREQUAL ch3_0_sleep1 OR ${NAME} STREQUAL ch3_1_yield2)
+        elseif (${NAME} STREQUAL ch2_exit OR ${NAME} STREQUAL ch3_1_yield0 OR ${NAME} STREQUAL ch3_2_stride0)
             math(EXPR ENTRY "0x80400000" OUTPUT_FORMAT HEXADECIMAL)
-        elseif (${NAME} STREQUAL ch3_2_stride5)
+        elseif (${NAME} STREQUAL ch3t_deadloop)
             math(EXPR ENTRY "0x80500000" OUTPUT_FORMAT HEXADECIMAL)
         else ()
             math(EXPR ENTRY "${ENTRY} + 0x20000" OUTPUT_FORMAT HEXADECIMAL)
         endif ()
     endif ()
+
+    add_executable(${NAME} ${PATH})
+    target_link_libraries(${NAME} ulib)
+    target_link_options(${NAME} PRIVATE -Ttext ${ENTRY})
 
     add_custom_command(
             TARGET ${NAME}

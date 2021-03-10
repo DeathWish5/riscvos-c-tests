@@ -14,6 +14,7 @@ endif
 OBJCOPY := $(ARCH)-linux-musl-objcopy
 OBJDUMP := $(ARCH)-linux-musl-objdump
 CP := cp
+CH_TESTS :=  
 
 binary:
 	@mkdir -p build
@@ -33,7 +34,6 @@ CH5_TESTS := $(CH4_TESTS) ch5
 CH6_TESTS := $(CH5_TESTS) ch6
 CH7_TESTS := $(CH6_TESTS) ch7
 
-CH_TESTS = 
 
 ifeq ($(CHAPTER), 2)
 	CH_TESTS += $(CH2_TESTS)
