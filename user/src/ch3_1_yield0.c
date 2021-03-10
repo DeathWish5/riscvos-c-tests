@@ -10,7 +10,7 @@ const int HEIGHT = 5;
 
 int main() {
     for (int i = 0; i < HEIGHT; ++i) {
-        for (int _ =  0; _ < WIDTH; ++_) { puts("A\n"); }
+        for (int _ =  0; _ < WIDTH; ++_) { putchar('A'); }
         printf(" [%d/%d]\n", i + 1, HEIGHT);
         sched_yield();
     }
