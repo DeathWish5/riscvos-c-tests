@@ -43,7 +43,7 @@ int exec(char* name) {
     return syscall(SYS_execve, name);
 }
 
-uint64 get_time() {
+int64 get_time() {
     TimeVal time;
     int err = sys_get_time(&time, 0);
     if (err == 0) {
