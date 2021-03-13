@@ -9,23 +9,23 @@ const char CR = 0x0d;
 const char DL = 0x7f;
 const char BS = 0x08;
 
-char line[4096];
 int tail = 0;
 
 int main() {
+    char line[1024];
     puts("C user shell\n");
-    puts(">> ");
+    printf(">> ");
     for(;;) {
         char c = getchar();
         switch (c) {
             case LF:
             case CR:
-                puts("\n");
+                printf("\n");
                 if (tail != 0) {
                     line[tail++] = '\0';
                     int cpid = spawn(line);
                     if (cpid < 0) {
-                        puts("invalid file name\n");
+                        printf("invalid file name\n");
                         continue;
                     }
                     int xstate = 0, exit_pid = 0;
@@ -41,13 +41,13 @@ int main() {
                     }
                     tail = 0;
                 }
-                puts(">> ");
+                printf(">> ");
             break;
             case BS:
             case DL:
                 if (tail != 0) {
                     putchar(BS);
-                    puts(" ");
+                    printf(" ");
                     putchar(BS);
                     --tail;
                 }
