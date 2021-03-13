@@ -11,7 +11,7 @@ int main() {
     char* lname1 = "linkname1";
     char* lname2 = "linkname2";
 
-    int fd = open(fname, O_CREATE | O_WRONLY, O_RDWR);
+    int fd = open(fname, O_CREATE | O_WRONLY);
     link(fname, lname0);
     Stat stat;
     fstat(fd, &stat);
@@ -24,7 +24,7 @@ int main() {
     close(fd);
 
     unlink(fname);
-    fd = open(lname0, O_WRONLY, O_RDWR);
+    fd = open(lname0, O_RDONLY);
     Stat stat2;
     char buf[100];
     memset(buf, 0, sizeof(buf));

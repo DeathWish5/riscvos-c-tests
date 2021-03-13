@@ -30,9 +30,9 @@ char* TESTS[] = {
     "ch6_mail1\0",
     "ch6_mail2\0",
     "ch6_mail3\0",
-    "ch7_mail0\0",
-    "ch7_mail1\0",
-    "ch7_mail2\0",
+    "ch7_file0\0",
+    "ch7_file1\0",
+    "ch7_file2\0",
 };
 
 int main() {

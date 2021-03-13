@@ -3,8 +3,8 @@
 
 #include "syscall.h"
 
-int open(const char *path, int flags, int mode) {
-    return syscall(SYS_openat, path, flags, mode);
+int open(const char *path, int flags) {
+    return syscall(SYS_openat, path, flags, O_RDWR);
 }
 
 int close(int fd) {
