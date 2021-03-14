@@ -14,6 +14,6 @@ int main() {
     assert(stat.mode == FILE);
     assert(stat.nlink == 1);
     close(fd);
-    puts("TEST fstat OK!\n");
+    puts("Test fstat OK!\n");
     return 0;
 }

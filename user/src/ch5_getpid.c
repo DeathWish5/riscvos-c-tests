@@ -3,6 +3,6 @@
 
 int main() {
     int pid = getpid();
-    printf("TEST getpid OK! pid = %d\n", pid);
+    printf("Test getpid OK! pid = %d\n", pid);
     return 0;
 }

@@ -21,6 +21,6 @@ int main() {
     close(fd);
 
     assert(strncmp(buffer, test_str, read_len) == 0);
-    puts("TEST file0 OK!\n");
+    puts("Test file0 OK!\n");
     return 0;
 }

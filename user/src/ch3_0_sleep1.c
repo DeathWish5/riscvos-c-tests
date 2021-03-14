@@ -8,6 +8,6 @@ int main() {
     sleep(100);
     int64 end = get_time();
     printf("time_msec = %lu after sleeping 100 ticks, delta = %lums!\n", end, end - start);
-    puts("TEST sleep1 passed!\n");
+    puts("Test sleep1 passed!\n");
     return 0;
 }

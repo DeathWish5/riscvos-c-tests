@@ -4,7 +4,7 @@
 
 /// 正确输出：（无报错信息）
 /// get_time OK! {...}
-/// TEST sleep OK!
+/// Test sleep OK!
 
 int main() {
     int64 current_time = get_time();

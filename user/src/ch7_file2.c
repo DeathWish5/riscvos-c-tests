@@ -39,6 +39,6 @@ int main() {
     fstat(fd, &stat2);
     assert(stat2.nlink == 1);
     close(fd);
-    puts("TEST link OK!\n");
+    puts("Test link OK!\n");
     return 0;
 }

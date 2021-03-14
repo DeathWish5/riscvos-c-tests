@@ -16,6 +16,6 @@ int main() {
         assert(exit_code == 0);                 // "error exit code"
     }
     assert(wait(&exit_code) < 0);               // "wait got too many"
-    puts("TEST spawn0 OK!\n");
+    puts("Test spawn0 OK!\n");
     return 0;
 }

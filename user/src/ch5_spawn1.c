@@ -11,7 +11,7 @@ int main() {
     int exit_pid = wait(&exit_code);
     assert(exit_pid == cpid);                                       // "error exit pid"
     assert(exit_code == 66778);                                      // "error exit code"
-    puts("TEST wait OK!\n");
+    puts("Test wait OK!\n");
     int cpid0 = spawn("ch5_exit0\0");
     int cpid1 = spawn("ch5_exit1\0");
     exit_pid = waitpid(cpid1, &exit_code);
@@ -20,6 +20,6 @@ int main() {
     exit_pid = wait(&exit_code);
     assert(exit_pid == cpid0);                                      // "error exit pid"
     assert(exit_code == 66778);                                     // "error exit code"
-    puts("TEST waitpid OK!\n");
+    puts("Test waitpid OK!\n");
     return 0;
 }

@@ -15,6 +15,6 @@ int main() {
     for (int idx = 0; idx < N; ++idx) {
         putchar(line[idx]);
     }
-    puts(" TEST getchar passed!\n");
+    puts(" Test getchar passed!\n");
     return 0;
 }
