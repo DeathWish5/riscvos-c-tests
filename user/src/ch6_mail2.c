@@ -50,7 +50,7 @@ int main() {
     assert(mailwrite(pid, buffer, BUF_LEN) == -1);
     puts("father wirte 1 mail fail\n");
     puts("father sleep 2s\n");
-    sleep(2000);
+    sleep(1500);
     assert(mailwrite(pid, buffer, BUF_LEN) == BUF_LEN);
     puts("father wirte 1 mail succeed\n");
 

@@ -5,10 +5,11 @@
 
 const int BUF_LEN = 256;
 const int MAIL_MAX = 16;
+const uint64 BAD_ADDRESS = 0x90000000ULL;
 
 int main() {
     int pid = getpid();
-    char* null = (char*)0x0;
+    char* null = (char*)BAD_ADDRESS;
     assert(mailwrite(pid, null, 10) == -1);
     char empty[0];
     assert(mailwrite(pid, empty, 0) == 0);
