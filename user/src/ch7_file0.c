@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <stddef.h>
 
+/// 测试文件基本读写，输出　Test file0 OK! 就算正确。
+
 int main() {
     char* test_str = "Hello, world!";
     char* fname = "fname";
@@ -21,6 +23,6 @@ int main() {
     close(fd);
 
     assert(strncmp(buffer, test_str, read_len) == 0);
-    puts("Test file0 OK!\n");
+    puts("Test file0 OK!");
     return 0;
 }

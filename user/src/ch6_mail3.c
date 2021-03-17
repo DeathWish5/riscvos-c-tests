@@ -7,6 +7,8 @@ const int BUF_LEN = 256;
 const int MAIL_MAX = 16;
 const uint64 BAD_ADDRESS = 0x90000000ULL;
 
+/// 邮箱错误参数测试，输出 mail3 test OK! 就算正确。
+
 int main() {
     int pid = getpid();
     char* null = (char*)BAD_ADDRESS;
@@ -22,6 +24,6 @@ int main() {
     assert(mailwrite(pid, empty, 0) == -1);
     assert(mailread(empty, 0) == 0);
     assert(mailwrite(pid, empty, 0) == -1);
-    puts("mail3 test OK!\n");
+    puts("mail3 test OK!");
     return 0;
 }

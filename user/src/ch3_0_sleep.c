@@ -6,6 +6,8 @@
 /// get_time OK! {...}
 /// Test sleep OK!
 
+/// 注意不要单纯以 OK! 作为判断，还要注意输出时间是否符合实际。
+
 int main() {
     int64 current_time = get_time();
     assert(current_time > 0);
@@ -14,6 +16,6 @@ int main() {
     while (get_time() < wait_for) {
         sched_yield();
     }
-    puts("Test sleep OK!\n");
+    puts("Test sleep OK!");
     return 0;
 }

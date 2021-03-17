@@ -3,6 +3,8 @@
 #include <unistd.h>
 #include <stdio.h>
 
+/// 辅助测例，运行所有其他测例。
+
 char* TESTS[] = {
     "ch2_hello_world\0",
     "ch2_power\0",
@@ -39,6 +41,6 @@ int main() {
         assert(pid == wait_pid);
         printf("Usertests: Test %s in Process %d exited with code %d", test, pid, xstate);
     }
-    puts("ch7 Usertests passed!\n");
+    puts("ch7 Usertests passed!");
     return 0;
 }

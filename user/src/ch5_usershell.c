@@ -4,6 +4,8 @@
 #include <stddef.h>
 #include <string.h>
 
+/// 不是测例，方便本地测试
+
 const char LF = 0x0a;
 const char CR = 0x0d;
 const char DL = 0x7f;
@@ -13,7 +15,7 @@ int tail = 0;
 
 int main() {
     char line[1024];
-    puts("C user shell\n");
+    puts("C user shell");
     printf(">> ");
     for(;;) {
         char c = getchar();

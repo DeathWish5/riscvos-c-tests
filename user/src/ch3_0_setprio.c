@@ -12,6 +12,6 @@ int main() {
     assert(set_priority(0) == -1);
     assert(set_priority(1) == -1);
     assert(set_priority(-10) == -1);
-    puts("Test set_priority OK!\n");
+    puts("Test set_priority OK!");
     return 0;
 }

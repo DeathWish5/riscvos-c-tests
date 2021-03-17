@@ -2,6 +2,12 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+/// 程序行为：先后产生 3 个有特定返回值的程序，检查 waitpid 能够获取正确返回值。
+
+/// 理想输出：
+/// new child i
+/// Test wait OK!
+/// Test waitpid OK!
 
 int main() {
     int cpid = spawn("ch5_exit0\0");
@@ -20,6 +26,6 @@ int main() {
     exit_pid = wait(&exit_code);
     assert(exit_pid == cpid0);                                      // "error exit pid"
     assert(exit_code == 66778);                                     // "error exit code"
-    puts("Test waitpid OK!\n");
+    puts("Test waitpid OK!");
     return 0;
 }

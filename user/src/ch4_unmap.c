@@ -3,6 +3,10 @@
 #include <stddef.h>
 #include <stdlib.h>
 
+/*
+理想结果：输出 Test 04_5 ummap OK!
+*/
+
 int main() {
     uint64 start = 0x10000000;
     uint64 len = 4096;
@@ -19,6 +23,6 @@ int main() {
         uint8* addr = (uint8*)i;
         assert(*addr == (uint8)i);
     }
-    puts("Test 04_5 ummap OK!\n");
+    puts("Test 04_5 ummap OK!");
     return 0;
 }

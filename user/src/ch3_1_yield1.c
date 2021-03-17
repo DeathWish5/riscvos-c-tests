@@ -14,6 +14,6 @@ int main() {
         printf(" [%d/%d]\n", i + 1, HEIGHT);
         sched_yield();
     }
-    puts("Test write C OK!\n");
+    puts("Test write C OK!");
     return 0;
 }

@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <stddef.h>
 
+/// 测试 link/unlink，输出　Test link OK! 就算正确。
+
 int main() {
     char* test_str = "Hello, world!";
     char* fname = "fname2";
@@ -39,6 +41,6 @@ int main() {
     fstat(fd, &stat2);
     assert(stat2.nlink == 1);
     close(fd);
-    puts("Test link OK!\n");
+    puts("Test link OK!");
     return 0;
 }

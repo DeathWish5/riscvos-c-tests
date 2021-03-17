@@ -5,6 +5,8 @@
 
 const int BUF_LEN = 256;
 
+/// 测试邮箱基本功能，输出　mail0 test OK! 就算正确。
+
 int main() {
     int pid = getpid();
     char buffer0[27];
@@ -19,6 +21,6 @@ int main() {
     assert(strncmp(buf, buffer0, sizeof(buffer0)) == 0);
     assert(mailread(buf, 27) == 27);
     assert(strncmp(buf, buffer1, 27) == 0);
-    puts("mail0 test OK!\n");
+    puts("mail0 test OK!");
     return 0;
 }

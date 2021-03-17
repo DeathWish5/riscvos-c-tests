@@ -2,6 +2,10 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+/*
+理想结果：生成 MAX_CHILD 个 getpid 的子进程，全部结束后，输出 Test spawn0 OK!
+*/
+
 const int MAX_CHILD = 40;
 
 int main() {
@@ -16,6 +20,6 @@ int main() {
         assert(exit_code == 0);                 // "error exit code"
     }
     assert(wait(&exit_code) < 0);               // "wait got too many"
-    puts("Test spawn0 OK!\n");
+    puts("Test spawn0 OK!");
     return 0;
 }
