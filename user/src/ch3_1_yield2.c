@@ -14,7 +14,7 @@ int main()
     {
         char buf[WIDTH + 1];
         for (int j = 0; j < WIDTH; ++j)
-            buf[i] = 'B';
+            buf[j] = 'B';
         buf[WIDTH] = 0;
         printf("%s [%d/%d]\n", buf, i + 1, HEIGHT);
         sched_yield();
