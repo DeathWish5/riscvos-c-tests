@@ -8,11 +8,13 @@ const int MAIL_MAX = 16;
 
 /// 测试邮箱容量，输出 mail1 test OK! 就算正确。
 
-int main() {
+int main()
+{
     int pid = getpid();
     char buffer0[BUF_LEN];
     memset(buffer0, 'a', BUF_LEN);
-    for (int _ = 0; _ < MAIL_MAX; ++_) {
+    for (int _ = 0; _ < MAIL_MAX; ++_)
+    {
         assert(mailwrite(pid, buffer0, BUF_LEN) == BUF_LEN);
     }
     assert(mailwrite(pid, buffer0, BUF_LEN) == -1);

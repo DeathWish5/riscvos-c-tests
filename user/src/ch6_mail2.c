@@ -7,9 +7,11 @@ const int BUF_LEN = 256;
 
 // 双进程邮箱测试，最终输出 mail2 test OK! 就算正确。
 
-int main() {
+int main()
+{
     int pid = fork();
-    if (pid == 0) {
+    if (pid == 0)
+    {
         puts("I am child");
         char buffer[BUF_LEN];
         memset(buffer, 0, sizeof(buffer));
@@ -17,7 +19,8 @@ int main() {
         puts("child read 1 mail fail");
         puts("child sleep 2s");
         sleep(2000);
-        for (int i = 0; i < 16; ++i) {
+        for (int i = 0; i < 16; ++i)
+        {
             char buffer[BUF_LEN];
             memset(buffer, 0, sizeof(buffer));
             assert(mailread(buffer, BUF_LEN) == BUF_LEN);
@@ -41,7 +44,8 @@ int main() {
     puts("I am father");
     puts("father sleep 1s");
     sleep(1000);
-    for (int i = 0; i < 16; ++i) {
+    for (int i = 0; i < 16; ++i)
+    {
         char buffer[BUF_LEN];
         memset(buffer, i, BUF_LEN);
         assert(mailwrite(pid, buffer, BUF_LEN) == BUF_LEN);

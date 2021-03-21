@@ -6,9 +6,10 @@
 
 /// 测试文件基本读写，输出　Test file0 OK! 就算正确。
 
-int main() {
-    char* test_str = "Hello, world!";
-    char* fname = "fname";
+int main()
+{
+    char *test_str = "Hello, world!";
+    char *fname = "fname";
     int fd = open(fname, O_CREATE | O_WRONLY);
     assert(fd > 0);
     write(fd, test_str, strlen(test_str));

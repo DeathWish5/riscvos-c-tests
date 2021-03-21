@@ -8,10 +8,15 @@ const int HEIGHT = 5;
 理想结果：三个程序交替输出 ABC
 */
 
-int main() {
-    for (int i = 0; i < HEIGHT; ++i) {
-        for (int _ =  0; _ < WIDTH; ++_) { putchar('C'); }
-        printf(" [%d/%d]\n", i + 1, HEIGHT);
+int main()
+{
+    for (int i = 0; i < HEIGHT; ++i)
+    {
+        char buf[WIDTH + 1];
+        for (int j = 0; j < WIDTH; ++j)
+            buf[i] = 'C';
+        buf[WIDTH] = 0;
+        printf("%s [%d/%d]\n", buf, i + 1, HEIGHT);
         sched_yield();
     }
     puts("Test write C OK!");

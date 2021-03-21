@@ -5,7 +5,7 @@
 
 /// 辅助测例，运行所有其他测例。
 
-char* TESTS[] = {
+char *TESTS[] = {
     "ch2_hello_world\0",
     "ch2_power\0",
     "ch2_write1\0",
@@ -27,10 +27,12 @@ char* TESTS[] = {
     "ch6_mail3\0",
 };
 
-int main() {
-    int num_test = sizeof(TESTS) / sizeof(char*);
-    for (int i = 0; i < num_test; ++i) {
-        char* test = TESTS[i];
+int main()
+{
+    int num_test = sizeof(TESTS) / sizeof(char *);
+    for (int i = 0; i < num_test; ++i)
+    {
+        char *test = TESTS[i];
         printf("Usertests: Running %s\n", test);
         int pid = spawn(test);
         int xstate = 0;

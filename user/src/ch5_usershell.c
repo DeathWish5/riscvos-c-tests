@@ -13,50 +13,60 @@ const char BS = 0x08;
 
 int tail = 0;
 
-int main() {
+int main()
+{
     char line[1024];
     puts("C user shell");
     printf(">> ");
-    for(;;) {
+    for (;;)
+    {
         char c = getchar();
-        switch (c) {
-            case LF:
-            case CR:
-                printf("\n");
-                if (tail != 0) {
-                    line[tail++] = '\0';
-                    int cpid = spawn(line);
-                    if (cpid < 0) {
-                        printf("invalid file name\n");
-                        continue;
-                    }
-                    int xstate = 0, exit_pid = 0;
-                    for(;;) {
-                        exit_pid = waitpid(cpid, &xstate);
-                        if (exit_pid == -1) {
-                            sched_yield();
-                        } else {
-                            assert(cpid == exit_pid);
-                            printf("Shell: Process %d exited with code %d\n", cpid, xstate);
-                            break;
-                        }
-                    }
-                    tail = 0;
+        switch (c)
+        {
+        case LF:
+        case CR:
+            printf("\n");
+            if (tail != 0)
+            {
+                line[tail++] = '\0';
+                int cpid = spawn(line);
+                if (cpid < 0)
+                {
+                    printf("invalid file name\n");
+                    continue;
                 }
-                printf(">> ");
-            break;
-            case BS:
-            case DL:
-                if (tail != 0) {
-                    putchar(BS);
-                    printf(" ");
-                    putchar(BS);
-                    --tail;
+                int xstate = 0, exit_pid = 0;
+                for (;;)
+                {
+                    exit_pid = waitpid(cpid, &xstate);
+                    if (exit_pid == -1)
+                    {
+                        sched_yield();
+                    }
+                    else
+                    {
+                        assert(cpid == exit_pid);
+                        printf("Shell: Process %d exited with code %d\n", cpid, xstate);
+                        break;
+                    }
                 }
+                tail = 0;
+            }
+            printf(">> ");
             break;
-            default:
-                putchar(c);
-                line[tail++] = c;
+        case BS:
+        case DL:
+            if (tail != 0)
+            {
+                putchar(BS);
+                printf(" ");
+                putchar(BS);
+                --tail;
+            }
+            break;
+        default:
+            putchar(c);
+            line[tail++] = c;
             break;
         }
     }

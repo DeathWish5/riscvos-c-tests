@@ -7,14 +7,15 @@ const int BUF_LEN = 256;
 
 /// 测试邮箱基本功能，输出　mail0 test OK! 就算正确。
 
-int main() {
+int main()
+{
     int pid = getpid();
     char buffer0[27];
     memset(buffer0, 'a', sizeof(buffer0));
     assert(mailwrite(pid, buffer0, sizeof(buffer0)) == sizeof(buffer0));
-    char buffer1[BUF_LEN+1];
+    char buffer1[BUF_LEN + 1];
     memset(buffer1, 'b', sizeof(buffer1));
-    assert(mailwrite(pid, buffer1, BUF_LEN+1) == BUF_LEN);
+    assert(mailwrite(pid, buffer1, BUF_LEN + 1) == BUF_LEN);
     char buf[BUF_LEN];
     memset(buf, 0, sizeof(buf));
     assert(mailread(buf, BUF_LEN) == sizeof(buffer0));

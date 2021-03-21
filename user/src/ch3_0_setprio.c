@@ -6,7 +6,8 @@
 /// 正确输出：（无报错信息）
 /// Test set_priority OK!
 
-int main() {
+int main()
+{
     assert(set_priority(10) == 10);
     assert(set_priority(INT_MAX) == INT_MAX);
     assert(set_priority(0) == -1);

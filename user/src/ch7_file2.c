@@ -6,12 +6,13 @@
 
 /// 测试 link/unlink，输出　Test link OK! 就算正确。
 
-int main() {
-    char* test_str = "Hello, world!";
-    char* fname = "fname2";
-    char* lname0 = "linkname0";
-    char* lname1 = "linkname1";
-    char* lname2 = "linkname2";
+int main()
+{
+    char *test_str = "Hello, world!";
+    char *fname = "fname2";
+    char *lname0 = "linkname0";
+    char *lname1 = "linkname1";
+    char *lname2 = "linkname2";
 
     int fd = open(fname, O_CREATE | O_WRONLY);
     link(fname, lname0);
