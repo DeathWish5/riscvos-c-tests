@@ -1,6 +1,7 @@
 ARCH ?= riscv64
 MODE ?= release
 CHAPTER ?=
+app_dir = src
 src_dir := build/$(ARCH)
 bin_dir := build/bin
 out_dir := target
@@ -15,17 +16,6 @@ OBJCOPY := $(ARCH)-linux-musl-objcopy
 OBJDUMP := $(ARCH)-linux-musl-objdump
 CP := cp
 CH_TESTS :=  
-
-binary:
-	@mkdir -p build
-	@cd build && cmake $(cmake_build_args) .. && make
-	@mkdir -p asm
-	@$(CP) build/asm/* asm
-
-pre:
-	@rm -rf $(out_dir)
-	@mkdir -p $(out_dir)/bin/
-	@mkdir -p $(out_dir)/elf/
 
 CH2_TESTS := ch2_ ch2t_
 CH3_TESTS_BASE := $(CH2_TESTS) ch3_0_ ch3t_
@@ -51,6 +41,17 @@ else ifeq ($(CHAPTER), 6)
 else ifeq ($(CHAPTER), 7)
 	CH_TESTS += $(CH7_TESTS)
 endif
+
+binary:
+	@mkdir -p build
+	@cd build && cmake $(cmake_build_args) .. && make
+	@mkdir -p asm
+	@$(CP) build/asm/* asm
+
+pre:
+	@rm -rf $(out_dir)
+	@mkdir -p $(out_dir)/bin/
+	@mkdir -p $(out_dir)/elf/
 
 all: binary pre
 	@$(foreach t, $(CH_TESTS), cp $(bin_dir)/$(t)* $(out_dir)/bin/;)
