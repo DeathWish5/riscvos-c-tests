@@ -141,8 +141,8 @@ boot 起来，能够输出就行。
     
       ```
       struct TimeVal {
-      	int sec,	// 自 Unix 纪元起的秒数
-      	int usec,	// 微秒，也就是除了秒的那点零头
+      	uint64 sec,	// 自 Unix 纪元起的秒数
+      	uint64 usec,	// 微秒，也就是除了秒的那点零头
       }
       ```
     
