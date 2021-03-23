@@ -15,7 +15,7 @@ int main()
     assert(len == mmap((void *)start, len, prot));
     uint8 *addr = (uint8 *)start;
     // *addr = (uint8)start; // can't write, R == 0 && W == 1 is illegal in riscv
-    puts("If core dumped, Test 04_3 OK!");
     assert(*addr != 0);
+    puts("Should cause error, Test 04_2 fail!")
     return 0;
 }
