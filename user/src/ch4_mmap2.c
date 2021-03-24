@@ -16,6 +16,6 @@ int main()
     uint8 *addr = (uint8 *)start;
     // *addr = (uint8)start; // can't write, R == 0 && W == 1 is illegal in riscv
     assert(*addr != 0);
-    puts("Should cause error, Test 04_2 fail!")
+    puts("Should cause error, Test 04_2 fail!");
     return 0;
 }
