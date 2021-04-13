@@ -18,6 +18,7 @@ int main()
     char line[1024];
     puts("C user shell");
     printf(">> ");
+    fflush(stdout);
     for (;;)
     {
         char c = getchar();
@@ -33,6 +34,8 @@ int main()
                 if (cpid < 0)
                 {
                     printf("invalid file name\n");
+                    printf(">> ");
+                    fflush(stdout);
                     continue;
                 }
                 int xstate = 0, exit_pid = 0;
@@ -53,6 +56,7 @@ int main()
                 tail = 0;
             }
             printf(">> ");
+            fflush(stdout);
             break;
         case BS:
         case DL:
@@ -61,11 +65,13 @@ int main()
                 putchar(BS);
                 printf(" ");
                 putchar(BS);
+                fflush(stdout);
                 --tail;
             }
             break;
         default:
             putchar(c);
+            fflush(stdout);
             line[tail++] = c;
             break;
         }

@@ -18,5 +18,8 @@ int getchar();
 int putchar(int);
 int puts(const char *s);
 void printf(const char *fmt, ...);
+int fflush(int);
+
+#define EOF (-1)
 
 #endif // __STDIO_H__

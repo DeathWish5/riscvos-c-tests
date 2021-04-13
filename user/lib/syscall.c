@@ -2,6 +2,7 @@
 #include <unistd.h>
 
 #include "syscall.h"
+#include "__zyr_impl.h"
 
 int open(const char *path, int flags)
 {
@@ -10,6 +11,8 @@ int open(const char *path, int flags)
 
 int close(int fd)
 {
+    __zyr_write_buffer(fd);
+    __zyr_clear_buffer(fd);
     return syscall(SYS_close, fd);
 }
 
@@ -40,6 +43,10 @@ int fork(void)
 
 void exit(int code)
 {
+    for (int i = 0; i < __ZYR_MAX_FD; i++) {
+        __zyr_write_buffer(i);
+        __zyr_clear_buffer(i);
+    }
     syscall(SYS_exit, code);
 }
 

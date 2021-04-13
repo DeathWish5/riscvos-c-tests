@@ -3,32 +3,81 @@
 #include <string.h>
 #include <unistd.h>
 
+#include "__zyr_impl.h"
+
 #define MAX(a, b) ((a) > (b) ? (a) : (b))
 #define MIN(a, b) ((a) < (b) ? (a) : (b))
 
 int getchar()
 {
     char byte = 0;
-    read(stdin, &byte, 1);
-    return byte;
+    if (1 == read(stdin, &byte, 1)) {
+        return byte;
+    } else {
+        return EOF;
+    }
+}
+
+#define MAX_FD __ZYR_MAX_FD
+#define LINE_WIDTH __ZYR_LINE_WIDTH
+
+static char buffer[MAX_FD][LINE_WIDTH];
+static int buffer_len[MAX_FD];
+
+// Returns: number of chars written, negative for failure
+// Warn: buffer_len[f] will not be changed
+int __zyr_write_buffer(int f) {
+    if (buffer_len[f] == 0) return 0;
+    int r = write(f, buffer[f], buffer_len[f]);
+    return r;
+}
+
+// Clear buffer_len[f]
+void __zyr_clear_buffer(int f) {
+    buffer_len[f] = 0;
+}
+
+int fflush(int fd) {
+    if (0 <= fd && fd < MAX_FD) {
+        int r = __zyr_write_buffer(fd);
+        __zyr_clear_buffer(fd);
+        return r >= 0 ? 0 : r;
+    } else {
+        return -1;
+    }
+}
+
+static int out(int f, const char *s, size_t l)
+{
+    // return write(f, s, l);
+    int ret = 0;
+    for (size_t i = 0; i < l; i++) {
+        char c = s[i];
+        buffer[f][buffer_len[f]++] = c;
+        if (buffer_len[f] == LINE_WIDTH || c == '\n') {
+            int r = __zyr_write_buffer(f);
+            int len = buffer_len[f];
+            __zyr_clear_buffer(f);
+            if (r < 0) return r;
+            if (r < buffer_len[f]) return ret + r;
+            ret += r;
+        }
+    }
+
+    return ret;
 }
 
 int putchar(int c)
 {
     char byte = c;
-    return write(stdout, &byte, 1);
+    return out(stdout, &byte, 1);
 }
 
 int puts(const char *s)
 {
     int r;
-    r = -(write(stdout, s, strlen(s)) < 0 || putchar('\n') < 0);
+    r = -(out(stdout, s, strlen(s)) < 0 || putchar('\n') < 0);
     return r;
-}
-
-static void out(int f, const char *s, size_t l)
-{
-    write(f, s, l);
 }
 
 static char digits[] = "0123456789abcdef";
