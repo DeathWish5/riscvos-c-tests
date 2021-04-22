@@ -1,7 +1,4 @@
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-#include <stdio.h>
+#include "ch8.h"
 
 const uint64 UNUSED_START = 0x8000;
 const uint64 N = 0x800;

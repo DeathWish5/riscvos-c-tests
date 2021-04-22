@@ -1,25 +1,4 @@
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-#include <stdio.h>
-
-void fork_test(void(*fn)(int)) {
-    const int NUM = 200;
-    for (int i = 0; i < NUM; ++i) {
-        int pid = fork();
-        if (pid == 0) {
-            fn(i);
-            exit(0);
-        }
-    }
-    int xstate = 0;
-    for (int i = 0; i < NUM; ++i) {
-        assert(wait(-1, &xstate) > 0);
-        assert(xstate == 0);
-    }
-    assert(wait(-1, &xstate) < 0);
-    return 0;
-}
+#include "ch8.h"
 
 void sleep_test(int _i) {
     int current_time = get_time();
@@ -28,7 +7,7 @@ void sleep_test(int _i) {
 }
 
 void heavy_fork_test() {
-    for (int i = 0; i < 10; ++i)
+    for (int i = 0; i < 30; ++i)
         fork_test(sleep_test);
 }
 
