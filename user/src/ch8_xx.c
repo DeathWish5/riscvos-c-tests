@@ -45,6 +45,6 @@ int main() {
     for(i = 0; i < N; ++i) {
         syscall(rand_syscall_id(), rand_arg(), rand_arg(), rand_arg(), rand_arg(), rand_arg(), rand_arg());
     }
-    puts("you are lucky!");
+    puts("nice!");
     return 0;
 }

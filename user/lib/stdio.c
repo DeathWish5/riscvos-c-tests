@@ -3,8 +3,6 @@
 #include <string.h>
 #include <unistd.h>
 
-#include "__zyr_impl.h"
-
 #define MAX(a, b) ((a) > (b) ? (a) : (b))
 #define MIN(a, b) ((a) < (b) ? (a) : (b))
 
@@ -18,52 +16,52 @@ int getchar()
     }
 }
 
-#define MAX_FD __ZYR_MAX_FD
-#define LINE_WIDTH __ZYR_LINE_WIDTH
+#define __LINE_WIDTH 256
 
-static char buffer[MAX_FD][LINE_WIDTH];
-static int buffer_len[MAX_FD];
+static char buffer[__LINE_WIDTH];
+static int buffer_len;
 
 // Returns: number of chars written, negative for failure
 // Warn: buffer_len[f] will not be changed
-int __zyr_write_buffer(int f) {
-    if (buffer_len[f] == 0) return 0;
-    int r = write(f, buffer[f], buffer_len[f]);
+int __write_buffer() {
+    if (buffer_len == 0) return 0;
+    int r = write(stdout, buffer, buffer_len);
     return r;
 }
 
 // Clear buffer_len[f]
-void __zyr_clear_buffer(int f) {
-    buffer_len[f] = 0;
+void __clear_buffer() {
+    buffer_len = 0;
+}
+
+int __fflush() {
+    int r = __write_buffer();
+    __clear_buffer();
+    return r >= 0 ? 0 : r;
 }
 
 int fflush(int fd) {
-    if (0 <= fd && fd < MAX_FD) {
-        int r = __zyr_write_buffer(fd);
-        __zyr_clear_buffer(fd);
-        return r >= 0 ? 0 : r;
-    } else {
-        return -1;
-    }
+    if(fd == 1)
+        __fflush();
 }
 
 static int out(int f, const char *s, size_t l)
 {
-    // return write(f, s, l);
+    if(f != stdout)
+        return write(f, s, l);
     int ret = 0;
     for (size_t i = 0; i < l; i++) {
         char c = s[i];
-        buffer[f][buffer_len[f]++] = c;
-        if (buffer_len[f] == LINE_WIDTH || c == '\n') {
-            int r = __zyr_write_buffer(f);
-            int len = buffer_len[f];
-            __zyr_clear_buffer(f);
+        buffer[buffer_len++] = c;
+        if (buffer_len == __LINE_WIDTH || c == '\n') {
+            int r = __write_buffer();
+            int len = buffer_len;
+            __clear_buffer(f);
             if (r < 0) return r;
-            if (r < buffer_len[f]) return ret + r;
+            if (r < buffer_len) return ret + r;
             ret += r;
         }
     }
-
     return ret;
 }
 

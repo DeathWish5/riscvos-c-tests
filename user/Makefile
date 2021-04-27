@@ -23,23 +23,38 @@ CH4_TESTS := ch2_ ch3_0_ ch4_
 CH5_TESTS := $(CH4_TESTS) ch5_
 CH6_TESTS := $(CH5_TESTS) ch6_
 CH7_TESTS := $(CH6_TESTS) ch7_
+CH8_TESTS := $(CH7_TESTS) ch8_
 
 ifeq ($(CHAPTER), 2)
-	CH_TESTS += $(CH2_TESTS)
+	CH_TESTS := $(CH2_TESTS)
+else ifeq ($(CHAPTER), 2_bad_)
+	CH_TESTS := $(CH2_TESTS_BAD)
 else ifeq ($(CHAPTER), 3_0)
-	CH_TESTS += $(CH3_TESTS_BASE)
+	CH_TESTS := $(CH3_TESTS_BASE)
 else ifeq ($(CHAPTER), 3_1)
-	CH_TESTS += ch3_1_
+	CH_TESTS := ch3_1_
 else ifeq ($(CHAPTER), 3_2)
-	CH_TESTS += ch3_2_
+	CH_TESTS := ch3_2_
 else ifeq ($(CHAPTER), 4)
-	CH_TESTS += $(CH4_TESTS)
+	CH_TESTS := $(CH4_TESTS)
+else ifeq ($(CHAPTER), 4_only)
+	CH_TESTS := ch4_
 else ifeq ($(CHAPTER), 5)
-	CH_TESTS += $(CH5_TESTS)
+	CH_TESTS := $(CH5_TESTS)
+else ifeq ($(CHAPTER), 5_only)
+	CH_TESTS := ch5_
 else ifeq ($(CHAPTER), 6)
-	CH_TESTS += $(CH6_TESTS)
+	CH_TESTS := $(CH6_TESTS)
+else ifeq ($(CHAPTER), 6_only)
+	CH_TESTS := ch6_
 else ifeq ($(CHAPTER), 7)
-	CH_TESTS += $(CH7_TESTS)
+	CH_TESTS := $(CH7_TESTS)
+else ifeq ($(CHAPTER), 7_only)
+	CH_TESTS := ch7_
+else ifeq ($(CHAPTER), 8)
+	CH_TESTS := $(CH8_TESTS)
+else ifeq ($(CHAPTER), 8_only)
+	CH_TESTS := ch8_
 endif
 
 binary:

@@ -13,8 +13,7 @@ int main() {
     close(1);
     fork();
     close(2);
-    puts("I need fuzzy ...");
-    open("@#$%**??!- ∑_{i = 0}^{over} -!??**@#$%", 414);
+    puts("[ERROR]I need fuzzy ...");
     open("编程是一件危险的事情", O_CREATE | O_WRONLY);
     set_priority(-7);
     set_priority(ULONG_MAX);
@@ -30,6 +29,6 @@ int main() {
     link("\0", "fname1");
     sys_unlinkat(555, "➑➑➑➑➑➑", -1);
     sys_linkat(0, "QAQ", -7, "❆❆❆❆❆", 0);
-    wait(-645);
+    wait((int*)0);
     return 0;
 }
