@@ -27,8 +27,8 @@ CH8_TESTS := $(CH7_TESTS) ch8_
 
 ifeq ($(CHAPTER), 2)
 	CH_TESTS := $(CH2_TESTS)
-else ifeq ($(CHAPTER), 2_bad_)
-	CH_TESTS := $(CH2_TESTS_BAD)
+else ifeq ($(CHAPTER), 2_bad)
+	CH_TESTS := __ch2_bad_
 else ifeq ($(CHAPTER), 3_0)
 	CH_TESTS := $(CH3_TESTS_BASE)
 else ifeq ($(CHAPTER), 3_1)
