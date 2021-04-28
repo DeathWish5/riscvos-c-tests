@@ -42,7 +42,8 @@ int __fflush() {
 
 int fflush(int fd) {
     if(fd == 1)
-        __fflush();
+        return __fflush();
+    return 0;
 }
 
 static int out(int f, const char *s, size_t l)
@@ -55,7 +56,6 @@ static int out(int f, const char *s, size_t l)
         buffer[buffer_len++] = c;
         if (buffer_len == __LINE_WIDTH || c == '\n') {
             int r = __write_buffer();
-            int len = buffer_len;
             __clear_buffer(f);
             if (r < 0) return r;
             if (r < buffer_len) return ret + r;

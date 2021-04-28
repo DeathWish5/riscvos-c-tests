@@ -36,6 +36,17 @@ uint64 randl() {
     return (uint64)(rand()) << 32 | rand();
 }
 
+int xorshift32(int x) {
+    x ^= x << 13;
+	x ^= x >> 17;
+	x ^= x << 5;
+    return x;
+}
+
+int hash(int x) {
+    return xorshift32(x);
+}
+
 inline long syscall(long n, long a, long b, long c, long d, long e, long f)
 {
     register long a7 __asm__("a7") = n;
@@ -46,4 +57,5 @@ inline long syscall(long n, long a, long b, long c, long d, long e, long f)
     register long a4 __asm__("a4") = e;
     register long a5 __asm__("a5") = f;
     asm volatile("ecall" : "=r"(a0): "r"(a7), "0"(a0), "r"(a1), "r"(a2), "r"(a3), "r"(a4), "r"(a5));
+    return a0;
 }
