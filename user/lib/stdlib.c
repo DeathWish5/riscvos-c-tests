@@ -10,7 +10,7 @@ void panic(char *m)
     exit(-100);
 }
 
-int hash(int n) {
+static int hash(int n) {
     uint64 r = 6364136223846793005ULL * n + 1;
     return r >> 33;
 }
