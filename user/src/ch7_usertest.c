@@ -41,7 +41,7 @@ int main()
         int xstate = 0;
         int wait_pid = waitpid(pid, &xstate);
         assert(pid == wait_pid);
-        printf("Usertests: Test %s in Process %d exited with code %d", test, pid, xstate);
+        printf("Usertests: Test %s in Process %d exited with code %d\n", test, pid, xstate);
     }
     puts("ch7 Usertests passed!");
     return 0;
